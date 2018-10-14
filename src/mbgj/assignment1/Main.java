@@ -25,8 +25,13 @@ public class Main {
         //This part is still in development, this placeholder is just a test to see if pieces are moving
         System.out.println("Enter your move, start with the coordinates the piece you want to move and where you want it to move.\n First numbers for row and column of origin and the next ones for destination (ex: 1 4 2 4): \n");
         
-        while(!sc.next().equals("end")){
-            int coordinateX = sc.nextInt();
+        while(true){
+            String firstInput = sc.next();
+            if (firstInput.equals("end")) {
+                break;
+            }
+            
+            int coordinateX = Integer.parseInt(firstInput);
             int coordinateY = sc.nextInt();
             int destinationX = sc.nextInt();
             int destinationY = sc.nextInt();
