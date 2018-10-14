@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         
         //Board initializing
-        BoardManager.init();                        
+        BoardManager.init();
         System.out.println("Board initialized\n");
       
         for (int row = 0; row < 8; row++)
