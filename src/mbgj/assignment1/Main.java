@@ -23,15 +23,28 @@ public class Main {
         
         //Input play
         //This part is still in development, this placeholder is just a test to see if pieces are moving
-        System.out.println("Enter your move, start with the coordinates and the name of the piece you want to move as well as the flag.\n First number for row and then second number for column  (ex: Pawn White 1 4): \n");
+        System.out.println("Enter your move, start with the coordinates the piece you want to move and where you want it to move.\n First numbers for row and column of origin and the next ones for destination (ex: 1 4 2 4): \n");
         
-        String pieceName;
-        String flagColor;
-        int coordinateX;
-        int coordinateY;
+        while(!sc.next().equals("end")){
+            int coordinateX = sc.nextInt();
+            int coordinateY = sc.nextInt();
+            int destinationX = sc.nextInt();
+            int destinationY = sc.nextInt();
+            
+            Coordinate currentCoordinate = new Coordinate(coordinateX, coordinateY);
+            Coordinate destinationCoordinate = new Coordinate(destinationX, destinationY);
+            PiecePack currentPiece = BoardManager.getPieceAt(currentCoordinate);
+            
+            if(BoardManager.requestMove(currentPiece.piece, destinationCoordinate)){
+                System.out.println("Piece moved!");
+                BoardManager.RenderBoard();
+            }
+            else {
+                System.out.println("Piece not moved!");
+            }
+            
+        }
         
-        String input = sc.nextLine();
-        String[] value = input.split(" ");
     
     }
 }
