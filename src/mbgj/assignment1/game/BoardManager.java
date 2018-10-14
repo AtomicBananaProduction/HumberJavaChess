@@ -66,7 +66,16 @@ public class BoardManager {
         return new PiecePack(board[cord.x][cord.y], id);
     }
 
-    public static void requestMove(Piece p, Coordinate cord) {
-        board[cord.x][cord.y] = p;
+    public static boolean requestMove(Piece p, Coordinate cord) {
+        Coordinate oldCord = new Coordinate(p.cord.x, p.cord.y);
+
+        if (p.moveTo(cord)) {
+            board[oldCord.x][oldCord.y] = null;
+            board[cord.x][cord.y] = p;
+
+            return true;
+        }
+
+        return false;
     }
 }
