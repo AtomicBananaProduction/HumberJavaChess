@@ -20,7 +20,7 @@ public class Bishop extends Piece {
     private void addMoveBishop(Coordinate ambCord, int dirX, int dirY) {
 
         // Setup new cord with direction
-        ambCord = new Coordinate(ambCord.row + dirX, ambCord.col + dirY);
+        ambCord = new Coordinate(ambCord.row + dirY, ambCord.col + dirX);
 
         // Quit condition: out of bound
         if (BoardManager.getPieceAt(ambCord).id == PiecePackId.OUT_OF_BOUND) {
