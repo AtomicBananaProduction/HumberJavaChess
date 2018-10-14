@@ -1,14 +1,26 @@
 package mbgj.assignment1.game;
 
+import java.util.HashMap;
 import mbgj.assignment1.game.Pieces.*;
 import mbgj.assignment1.util.Coordinate;
 
 public class BoardManager {
 
     private static Piece[][] board;
+    private static HashMap<String, String> pieceMap;
 
     public static void init() {
         board = new Piece[8][8];
+        
+        pieceMap = new HashMap<>(); // Hashmap to translate computer id like Pawn to graphic value like P
+        
+        pieceMap.put("Pawn", "P"); // Pawn is the code id and P is the graphic representation
+        pieceMap.put("Rook", "R"); 
+        pieceMap.put("King", "K");
+        pieceMap.put("Queen", "Q");
+        pieceMap.put("Knight", "N");
+        pieceMap.put("Bishop", "B");
+        
 
         // Black
         board[0][0] = new Rook(new Coordinate(0, 0), Flag.BLACK);
@@ -77,5 +89,30 @@ public class BoardManager {
         }
 
         return false;
+    }
+    
+    public static void RenderBoard(){
+        
+        for (int row = 0; row < 8; row++)
+        {
+          System.out.println("");
+          System.out.println("---------------------------------");
+
+          for (int column = 0; column < 8; column++)
+          {
+              PiecePack piece = BoardManager.getPieceAt(new Coordinate(row, column));
+              if (piece.id == PiecePackId.EMPTY) { // No piece on cord
+                  System.out.print("| " + " " + " ");
+              } else if (piece.id == PiecePackId.NORM) { // A piece on cord
+                  String value = pieceMap.get(piece.piece.name); // Get the graphic value
+
+                  if (value != null) { // if we have setup all items in the map
+                      System.out.print("| " + value + " ");
+                  }
+              }
+          }           
+        }
+        System.out.println("");
+        System.out.println("---------------------------------\n");
     }
 }
