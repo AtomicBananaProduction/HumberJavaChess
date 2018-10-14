@@ -2,15 +2,15 @@ package mbgj.assignment1.util;
 
 public final class Coordinate implements Comparable<Coordinate> {
 
-    public int x, y;
+    public int row, col;
 
-    public Coordinate(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Coordinate(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
     @Override
     public int compareTo(Coordinate o) {
-        return x == o.x && y == o.y ? 0 : -1;
+        return row == o.row && col == o.col ? 0 : -1;
     }
 }

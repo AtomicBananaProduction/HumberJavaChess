@@ -23,7 +23,7 @@ public abstract class Piece {
     }
 
     public final Coordinate getCord() {
-        return new Coordinate(cord.x, cord.y);
+        return new Coordinate(cord.row, cord.col);
     }
 
     public final Flag getFlag() {
@@ -36,7 +36,7 @@ public abstract class Piece {
         boolean canMove = false;
 
         for (Coordinate c : moves) {
-            canMove = canMove || c == cord;
+            canMove = canMove || c.compareTo(cord) == -1 ? false : true;
         }
 
         return canMove;
@@ -46,7 +46,6 @@ public abstract class Piece {
         if (canMoveTo(cord)) {
 
             this.cord = cord;
-            BoardManager.requestMove(this, cord);
 
             moves.clear();
             calcMoves();

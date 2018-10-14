@@ -25,7 +25,7 @@ public class Queen extends Piece {
     private void addMoveQueen(Coordinate ambCord, int dirX, int dirY) {
 
         // Setup new cord with direction
-        ambCord = new Coordinate(ambCord.x + dirX, ambCord.y + dirY);
+        ambCord = new Coordinate(ambCord.row + dirX, ambCord.col + dirY);
 
         // Quit condition: out of bound
         if (BoardManager.getPieceAt(ambCord).id == PiecePackId.OUT_OF_BOUND) {

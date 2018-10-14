@@ -66,24 +66,24 @@ public class BoardManager {
     public static PiecePack getPieceAt(Coordinate cord) {
         PiecePackId id;
 
-        if (cord.x < 0 || cord.x > 7 || cord.y < 0 || cord.y >7) {
+        if (cord.row < 0 || cord.row > 7 || cord.col < 0 || cord.col >7) {
             id = PiecePackId.OUT_OF_BOUND;
             return new PiecePack(null, id);
-        } else if (board[cord.x][cord.y] == null) {
+        } else if (board[cord.row][cord.col] == null) {
             id = PiecePackId.EMPTY;
         } else {
             id = PiecePackId.NORM;
         }
 
-        return new PiecePack(board[cord.x][cord.y], id);
+        return new PiecePack(board[cord.row][cord.col], id);
     }
 
     public static boolean requestMove(Piece p, Coordinate cord) {
-        Coordinate oldCord = new Coordinate(p.cord.x, p.cord.y);
+        Coordinate oldCord = new Coordinate(p.cord.row, p.cord.col);
 
         if (p.moveTo(cord)) {
-            board[oldCord.x][oldCord.y] = null;
-            board[cord.x][cord.y] = p;
+            board[oldCord.row][oldCord.col] = null;
+            board[cord.row][cord.col] = p;
 
             return true;
         }
