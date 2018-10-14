@@ -10,7 +10,7 @@ public class King extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         // Horizontal and vertical
         addMoveKing(new Coordinate(cord.x - 1, cord.y));
         addMoveKing(new Coordinate(cord.x + 1, cord.y));

@@ -9,7 +9,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         addMoveRook(cord, 1, 0);
         addMoveRook(cord, -1, 0);
         addMoveRook(cord, 0, 1);

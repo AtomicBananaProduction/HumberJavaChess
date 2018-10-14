@@ -10,7 +10,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         // Initial 2 move case
         if (flag == Flag.WHITE && cord.y == 1) { // White pawn in starting location
             moves.add(new Coordinate(cord.x, cord.y + 2));

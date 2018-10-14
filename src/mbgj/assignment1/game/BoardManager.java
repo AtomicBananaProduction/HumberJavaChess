@@ -37,6 +37,18 @@ public class BoardManager {
         for (int i = 0; i < 8; i++) {
             board[6][i] = new Pawn(new Coordinate(6, i), Flag.WHITE);
         }
+
+        UpdateAllMove();
+    }
+
+    private static void UpdateAllMove() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] != null) {
+                    board[i][j].calcMoves();
+                }
+            }
+        }
     }
 
     public static PiecePack getPieceAt(Coordinate cord) {

@@ -10,7 +10,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         addMoveKnight(new Coordinate(cord.x - 2, cord.y + 1));
         addMoveKnight(new Coordinate(cord.x - 2, cord.y - 1));
 

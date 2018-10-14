@@ -10,7 +10,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         addMoveQueen(cord, 1, 0);
         addMoveQueen(cord, -1, 0);
         addMoveQueen(cord, 0, 1);

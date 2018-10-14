@@ -15,10 +15,11 @@ public abstract class Piece {
     }
 
     public Piece(Coordinate cord, String name, Flag flag) {
+        moves = new ArrayList<>();
+
         this.cord = cord;
         this.name = name;
         this.flag = flag;
-        calcMoves();
     }
 
     public final Coordinate getCord() {
@@ -29,7 +30,7 @@ public abstract class Piece {
         return flag == Flag.BLACK ? Flag.BLACK : Flag.WHITE;
     }
 
-    protected abstract void calcMoves();
+    public abstract void calcMoves();
 
     protected boolean canMoveTo(Coordinate cord) {
         boolean canMove = false;

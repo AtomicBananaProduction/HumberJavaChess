@@ -10,7 +10,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         addMoveBishop(cord, 1, 1);
         addMoveBishop(cord, -1, -1);
         addMoveBishop(cord, -1, 1);
