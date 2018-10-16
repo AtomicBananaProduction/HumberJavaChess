@@ -53,7 +53,9 @@ public class King extends Piece {
                 moves.add(cord);
             }
         } else if (p.id == PiecePackId.NORM) {
-            moves.add(cord);
+            if (p.piece.getFlag() != flag) {
+                moves.add(cord);
+            }
         }
     }
 }

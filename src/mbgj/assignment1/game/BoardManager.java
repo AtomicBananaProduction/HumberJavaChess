@@ -36,14 +36,14 @@ public class BoardManager {
         }
 
         // White
-        board[7][0] = new Rook(new Coordinate(0, 0), Flag.WHITE);
-        board[7][1] = new Knight(new Coordinate(0, 1), Flag.WHITE);
-        board[7][2] = new Bishop(new Coordinate(0, 2), Flag.WHITE);
-        board[7][3] = new Queen(new Coordinate(0, 3), Flag.WHITE);
-        board[7][4] = new King(new Coordinate(0, 4), Flag.WHITE);
-        board[7][5] = new Bishop(new Coordinate(0, 5), Flag.WHITE);
-        board[7][6] = new Knight(new Coordinate(0, 6), Flag.WHITE);
-        board[7][7] = new Rook(new Coordinate(0, 7), Flag.WHITE);
+        board[7][0] = new Rook(new Coordinate(7, 0), Flag.WHITE);
+        board[7][1] = new Knight(new Coordinate(7, 1), Flag.WHITE);
+        board[7][2] = new Bishop(new Coordinate(7, 2), Flag.WHITE);
+        board[7][3] = new Queen(new Coordinate(7, 3), Flag.WHITE);
+        board[7][4] = new King(new Coordinate(7, 4), Flag.WHITE);
+        board[7][5] = new Bishop(new Coordinate(7, 5), Flag.WHITE);
+        board[7][6] = new Knight(new Coordinate(7, 6), Flag.WHITE);
+        board[7][7] = new Rook(new Coordinate(7, 7), Flag.WHITE);
 
         for (int i = 0; i < 8; i++) {
             board[6][i] = new Pawn(new Coordinate(6, i), Flag.WHITE);
@@ -78,6 +78,15 @@ public class BoardManager {
     public static boolean requestMove(Piece p, Coordinate cord) {
         p.calcMoves();
         Coordinate oldCord = new Coordinate(p.cord.row, p.cord.col);
+
+        // Castle tester
+        if ((oldCord.row == 0 || oldCord.row == 7) &&
+                (p.name.equals("Rook") || p.name.equals("King"))) {
+            // King moves
+            if (p.name.equals("King")) {
+
+            }
+        }
 
         if (p.moveTo(cord)) {
             board[oldCord.row][oldCord.col] = null;
