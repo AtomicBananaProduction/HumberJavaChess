@@ -88,14 +88,40 @@ public class BoardManager {
 
         return false;
     }
+
+    public static void promotePawn(Piece p, int id) {
+        Piece newPiece = null;
+        Flag flag = p.getFlag();
+        Coordinate cord = p.cord;
+
+        switch (id) {
+            case 0:
+                newPiece = new Knight(cord, flag);
+                break;
+            case 1:
+                newPiece = new Bishop(cord, flag);
+                break;
+            case 2:
+                newPiece = new Rook(cord, flag);
+                break;
+            case 3:
+                newPiece = new Queen(cord, flag);
+                break;
+        }
+
+        board[cord.row][cord.col] = newPiece;
+    }
     
     public static void RenderBoard(){
-        
+
+        System.out.print("      0   1   2   3   4   5   6   7 ");
+
         for (int row = 0; row < 8; row++)
         {
           System.out.println("");
-          System.out.println("---------------------------------");
+          System.out.println("    ---------------------------------");
 
+            System.out.print("  " + row + " ");
           for (int column = 0; column < 8; column++)
           {
               PiecePack piece = BoardManager.getPieceAt(new Coordinate(row, column));
@@ -111,6 +137,6 @@ public class BoardManager {
           }           
         }
         System.out.println("");
-        System.out.println("---------------------------------\n");
+        System.out.println("    ---------------------------------\n");
     }
 }

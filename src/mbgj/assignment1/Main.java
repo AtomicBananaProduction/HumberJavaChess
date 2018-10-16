@@ -1,10 +1,8 @@
 package mbgj.assignment1;
 
 import java.util.Scanner;
-import mbgj.assignment1.game.BoardManager;
-import mbgj.assignment1.game.Piece;
-import mbgj.assignment1.game.PiecePack;
-import mbgj.assignment1.game.PiecePackId;
+
+import mbgj.assignment1.game.*;
 import mbgj.assignment1.util.Coordinate;
 
 public class Main {
@@ -40,12 +38,35 @@ public class Main {
             Coordinate destinationCoordinate = new Coordinate(destinationX, destinationY);
             PiecePack currentPiece = BoardManager.getPieceAt(currentCoordinate);
 
+            // If player try enter dumb coordinate
+            if (currentPiece.id == PiecePackId.EMPTY) {
+                System.out.println("Empty location!");
+                System.out.println();
+            } else if (currentPiece.id == PiecePackId.OUT_OF_BOUND) {
+                System.out.println("Location outside board!");
+                System.out.println();
+            }
+
+            // Debug print all moves
             System.out.println("All available moves:");
             currentPiece.piece.calcMoves();
             currentPiece.piece.printMoves();
             System.out.println();
             
             if(BoardManager.requestMove(currentPiece.piece, destinationCoordinate)) {
+
+                // Test for pawn's promotion
+                if ((destinationCoordinate.row == 0 || destinationCoordinate.row == 7) && currentPiece.piece.name.equals("Pawn")) {
+                    System.out.println("Your pawn has a promotion!!!");
+                    System.out.println("0 - Knight");
+                    System.out.println("1 - Bishop");
+                    System.out.println("2 - Rook");
+                    System.out.println("3 - Queen");
+
+                    int choice = sc.nextInt();
+                    BoardManager.promotePawn(currentPiece.piece, choice);
+                }
+
                 System.out.println("Piece moved!");
                 BoardManager.RenderBoard();
             }
