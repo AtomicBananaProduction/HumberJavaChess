@@ -20,7 +20,6 @@ public class BoardManager {
         pieceMap.put("Queen", "Q");
         pieceMap.put("Knight", "N");
         pieceMap.put("Bishop", "B");
-        
 
         // Black
         board[0][0] = new Rook(new Coordinate(0, 0), Flag.BLACK);
@@ -49,8 +48,6 @@ public class BoardManager {
         for (int i = 0; i < 8; i++) {
             board[6][i] = new Pawn(new Coordinate(6, i), Flag.WHITE);
         }
-
-        UpdateAllMove();
     }
 
     private static void UpdateAllMove() {
@@ -79,6 +76,7 @@ public class BoardManager {
     }
 
     public static boolean requestMove(Piece p, Coordinate cord) {
+        p.calcMoves();
         Coordinate oldCord = new Coordinate(p.cord.row, p.cord.col);
 
         if (p.moveTo(cord)) {

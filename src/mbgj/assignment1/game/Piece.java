@@ -36,7 +36,7 @@ public abstract class Piece {
         boolean canMove = false;
 
         for (Coordinate c : moves) {
-            canMove = canMove || c.compareTo(cord) == -1 ? false : true;
+            canMove = canMove || (c.compareTo(cord) == -1 ? false : true);
         }
 
         return canMove;
@@ -48,11 +48,19 @@ public abstract class Piece {
             this.cord = cord;
 
             moves.clear();
-            calcMoves();
 
             return true;
         }
 
         return false;
+    }
+
+    public final void printMoves()
+    {
+        for (Coordinate c : moves) {
+            System.out.println("(" + c.row + " , " + c.col + ")");
+        }
+
+        moves.clear();
     }
 }

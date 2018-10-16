@@ -39,6 +39,11 @@ public class Main {
             Coordinate currentCoordinate = new Coordinate(coordinateX, coordinateY);
             Coordinate destinationCoordinate = new Coordinate(destinationX, destinationY);
             PiecePack currentPiece = BoardManager.getPieceAt(currentCoordinate);
+
+            System.out.println("All available moves:");
+            currentPiece.piece.calcMoves();
+            currentPiece.piece.printMoves();
+            System.out.println();
             
             if(BoardManager.requestMove(currentPiece.piece, destinationCoordinate)) {
                 System.out.println("Piece moved!");
