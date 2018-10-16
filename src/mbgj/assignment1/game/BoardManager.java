@@ -79,23 +79,30 @@ public class BoardManager {
         p.calcMoves();
         Coordinate oldCord = new Coordinate(p.cord.row, p.cord.col);
 
-        // Castle tester
-        if ((oldCord.row == 0 || oldCord.row == 7) &&
-                (p.name.equals("Rook") || p.name.equals("King"))) {
-            // King moves
-            if (p.name.equals("King")) {
-
-            }
-        }
-
         if (p.moveTo(cord)) {
             board[oldCord.row][oldCord.col] = null;
             board[cord.row][cord.col] = p;
+
+            // Castle tester
+            if ((oldCord.row == 0 || oldCord.row == 7) &&
+                    (p.name.equals("King"))) {
+                // King moves
+                if (cord.compareTo(new Coordinate(oldCord.row, oldCord.col + 2)) == 0) {
+                    forceMove(board[oldCord.row][7], new Coordinate(oldCord.row, 5));
+                } else if (cord.compareTo(new Coordinate(oldCord.row, oldCord.col - 2)) == 0) {
+                    forceMove(board[oldCord.row][0], new Coordinate(oldCord.row, 3));
+                }
+            }
 
             return true;
         }
 
         return false;
+    }
+
+    public static void forceMove(Piece p, Coordinate cord) {
+        board[p.cord.row][p.cord.col] = null;
+        board[cord.row][cord.col] = p;
     }
 
     public static void promotePawn(Piece p, int id) {
@@ -146,6 +153,7 @@ public class BoardManager {
           }           
         }
         System.out.println("");
-        System.out.println("    ---------------------------------\n");
+        System.out.println("    ---------------------------------");
+        System.out.println("      0   1   2   3   4   5   6   7 \n");
     }
 }
