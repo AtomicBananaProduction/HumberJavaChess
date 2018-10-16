@@ -40,7 +40,7 @@ public class Main {
             Coordinate destinationCoordinate = new Coordinate(destinationX, destinationY);
             PiecePack currentPiece = BoardManager.getPieceAt(currentCoordinate);
             
-            if(BoardManager.requestMove(currentPiece.piece, destinationCoordinate)){
+            if(BoardManager.requestMove(currentPiece.piece, destinationCoordinate)) {
                 System.out.println("Piece moved!");
                 BoardManager.RenderBoard();
             }
