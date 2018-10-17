@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        
+        Flag currentFlag = Flag.WHITE;
         
         //Board initializing
         BoardManager.init();
@@ -42,9 +42,25 @@ public class Main {
             if (currentPiece.id == PiecePackId.EMPTY) {
                 System.out.println("Empty location!");
                 System.out.println();
+                continue;
             } else if (currentPiece.id == PiecePackId.OUT_OF_BOUND) {
                 System.out.println("Location outside board!");
                 System.out.println();
+                continue;
+            }
+
+            // Wrong player
+            if (currentPiece.piece.getFlag() != currentFlag) {
+                String id = null;
+
+                if (currentFlag == Flag.WHITE) {
+                    id = "White";
+                } else {
+                    id = "Black";
+                }
+
+                System.out.println("Wrong player! The current player should be using " + id + " pieces!");
+                continue;
             }
 
             // Debug print all moves
@@ -68,6 +84,7 @@ public class Main {
                 }
 
                 System.out.println("Piece moved!");
+                currentFlag = Piece.nFlag(currentFlag);
                 BoardManager.RenderBoard();
             }
             else {
