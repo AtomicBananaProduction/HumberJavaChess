@@ -11,6 +11,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         Flag currentFlag = Flag.WHITE;
+        int currentPlayer;
         
         //Board initializing
         BoardManager.init();
@@ -26,6 +27,8 @@ public class Main {
         while(true){
             String firstInput = sc.next();
             if (firstInput.equals("end")) {
+                currentPlayer = currentFlag == Flag.WHITE ? 0 : 1;
+                BoardManager.saveGame(currentPlayer);
                 break;
             }
             
@@ -84,7 +87,7 @@ public class Main {
                 }
 
                 System.out.println("Piece moved!");
-                currentFlag = Piece.nFlag(currentFlag);
+                currentFlag = Piece.nFlag(currentFlag);  //This changes the current player turn
                 BoardManager.RenderBoard();
             }
             else {
