@@ -247,6 +247,8 @@ public class BoardManager {
                     currentPlayer = Integer.parseInt(line);
                 }
 
+                line = br.readLine();
+
                 while(line != null){
                     StringTokenizer st = new StringTokenizer(line, "-");
 
