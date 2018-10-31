@@ -15,6 +15,7 @@ public class Main {
         
         //Start Game asking if want to load a Saved Game
         System.out.println("Welcome to the Chess Game. Do you want to load a game or start a new one?\n");
+        System.out.println("When quitting, type end to quit type save to save and quit!\n");
         System.out.println("Type load or new , for whichever option");
  
         String option = sc.next();
@@ -42,9 +43,12 @@ public class Main {
         
         while(true){
             String firstInput = sc.next();
-            if (firstInput.equals("end")) {
+            if (firstInput.equals("save")) {
                 currentPlayer = currentFlag == Flag.WHITE ? 0 : 1;
                 BoardManager.saveGame(currentPlayer);
+                break;
+            } else if (firstInput.equals("end"))
+            {
                 break;
             }
             
