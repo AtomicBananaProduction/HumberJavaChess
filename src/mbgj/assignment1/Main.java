@@ -11,10 +11,28 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         Flag currentFlag = Flag.WHITE;
+        int currentPlayer;
         
-        //Board initializing
-        BoardManager.init();
-        System.out.println("Board initialized\n");
+        //Start Game asking if want to load a Saved Game
+        System.out.println("Welcome to the Chess Game. Do you want to load a game or start a new one?\n");
+        System.out.println("When quitting, type end to quit type save to save and quit!\n");
+        System.out.println("Type load or new , for whichever option");
+ 
+        String option = sc.next();
+        
+        switch(option){
+            case "load":
+                //Assigns the current player to be equal to the last player's turn when the game was saved.
+                currentPlayer = BoardManager.loadGame("SavedGame.txt");
+                currentFlag = currentPlayer == 0 ? Flag.WHITE : Flag.BLACK;
+                System.out.println("Board re-initialized\n");
+                break;
+            case "new":
+                //Assigns the board to initialize normally and the current player will be WHITE.
+                BoardManager.init();
+                System.out.println("Board initialized\n");
+                break;
+        }        
         
         //Board Render (First Time)        
         BoardManager.RenderBoard();
@@ -25,7 +43,12 @@ public class Main {
         
         while(true){
             String firstInput = sc.next();
-            if (firstInput.equals("end")) {
+            if (firstInput.equals("save")) {
+                currentPlayer = currentFlag == Flag.WHITE ? 0 : 1;
+                BoardManager.saveGame(currentPlayer);
+                break;
+            } else if (firstInput.equals("end"))
+            {
                 break;
             }
             
@@ -84,7 +107,7 @@ public class Main {
                 }
 
                 System.out.println("Piece moved!");
-                currentFlag = Piece.nFlag(currentFlag);
+                currentFlag = Piece.nFlag(currentFlag);  //This changes the current player turn
                 BoardManager.RenderBoard();
             }
             else {
