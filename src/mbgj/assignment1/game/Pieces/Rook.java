@@ -9,7 +9,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         addMoveRook(cord, 1, 0);
         addMoveRook(cord, -1, 0);
         addMoveRook(cord, 0, 1);
@@ -19,7 +19,7 @@ public class Rook extends Piece {
     private void addMoveRook(Coordinate ambCord, int dirX, int dirY) {
 
         // Setup new cord with direction
-        ambCord = new Coordinate(ambCord.x + dirX, ambCord.y + dirY);
+        ambCord = new Coordinate(ambCord.row + dirY, ambCord.col + dirX);
 
         // Quit condition: out of bound
         if (BoardManager.getPieceAt(ambCord).id == PiecePackId.OUT_OF_BOUND) {

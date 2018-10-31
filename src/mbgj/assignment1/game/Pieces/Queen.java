@@ -10,7 +10,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         addMoveQueen(cord, 1, 0);
         addMoveQueen(cord, -1, 0);
         addMoveQueen(cord, 0, 1);
@@ -25,7 +25,7 @@ public class Queen extends Piece {
     private void addMoveQueen(Coordinate ambCord, int dirX, int dirY) {
 
         // Setup new cord with direction
-        ambCord = new Coordinate(ambCord.x + dirX, ambCord.y + dirY);
+        ambCord = new Coordinate(ambCord.row + dirY, ambCord.col + dirX);
 
         // Quit condition: out of bound
         if (BoardManager.getPieceAt(ambCord).id == PiecePackId.OUT_OF_BOUND) {

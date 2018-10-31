@@ -10,18 +10,18 @@ public class Knight extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
-        addMoveKnight(new Coordinate(cord.x - 2, cord.y + 1));
-        addMoveKnight(new Coordinate(cord.x - 2, cord.y - 1));
+    public void calcMoves() {
+        addMoveKnight(new Coordinate(cord.row - 2, cord.col + 1));
+        addMoveKnight(new Coordinate(cord.row - 2, cord.col - 1));
 
-        addMoveKnight(new Coordinate(cord.x - 1, cord.y + 2));
-        addMoveKnight(new Coordinate(cord.x - 1, cord.y - 2));
+        addMoveKnight(new Coordinate(cord.row - 1, cord.col + 2));
+        addMoveKnight(new Coordinate(cord.row - 1, cord.col - 2));
 
-        addMoveKnight(new Coordinate(cord.x + 1, cord.y + 2));
-        addMoveKnight(new Coordinate(cord.x + 1, cord.y - 2));
+        addMoveKnight(new Coordinate(cord.row + 1, cord.col + 2));
+        addMoveKnight(new Coordinate(cord.row + 1, cord.col - 2));
 
-        addMoveKnight(new Coordinate(cord.x + 2, cord.y + 1));
-        addMoveKnight(new Coordinate(cord.x + 2, cord.y - 1));
+        addMoveKnight(new Coordinate(cord.row + 2, cord.col + 1));
+        addMoveKnight(new Coordinate(cord.row + 2, cord.col - 1));
     }
 
     private void addMoveKnight(Coordinate cord) {

@@ -10,12 +10,12 @@ public class Pawn extends Piece {
     }
 
     @Override
-    protected void calcMoves() {
+    public void calcMoves() {
         // Initial 2 move case
-        if (flag == Flag.WHITE && cord.y == 1) { // White pawn in starting location
-            moves.add(new Coordinate(cord.x, cord.y + 2));
-        } else if (flag == Flag.BLACK && cord.y == 6) { // Black pawn in starting location
-            moves.add(new Coordinate(cord.x, cord.y - 2));
+        if (flag == Flag.WHITE && cord.row == 6) { // White pawn in starting location
+            moves.add(new Coordinate(cord.row - 2, cord.col));
+        } else if (flag == Flag.BLACK && cord.row == 1) { // Black pawn in starting location
+            moves.add(new Coordinate(cord.row + 2, cord.col));
         }
 
         PiecePack left = null;
@@ -23,11 +23,11 @@ public class Pawn extends Piece {
 
         // Enemy on diagonal case
         if (flag == Flag.WHITE) { // White piece
-            left = BoardManager.getPieceAt(new Coordinate(cord.x - 1, cord.y + 1));
-            right = BoardManager.getPieceAt(new Coordinate(cord.x + 1, cord.y + 1));
+            left = BoardManager.getPieceAt(new Coordinate(cord.row - 1, cord.col - 1));
+            right = BoardManager.getPieceAt(new Coordinate(cord.row - 1, cord.col + 1));
         } else if (flag == Flag.BLACK) { // Black piece
-            left = BoardManager.getPieceAt(new Coordinate(cord.x - 1, cord.y - 1));
-            right = BoardManager.getPieceAt(new Coordinate(cord.x + 1, cord.y - 1));
+            left = BoardManager.getPieceAt(new Coordinate(cord.row + 1, cord.col - 1));
+            right = BoardManager.getPieceAt(new Coordinate(cord.row + 1, cord.col + 1));
         }
 
         // Add kill moves if there is any
@@ -46,10 +46,10 @@ public class Pawn extends Piece {
         PiecePack front;
         Coordinate frontCord;
         if (flag == Flag.WHITE) {
-            frontCord = new Coordinate(cord.x, cord.y + 1);
+            frontCord = new Coordinate(cord.row - 1, cord.col);
             front = BoardManager.getPieceAt(frontCord);
         } else {
-            frontCord = new Coordinate(cord.x, cord.y - 1);
+            frontCord = new Coordinate(cord.row + 1, cord.col);
             front = BoardManager.getPieceAt(frontCord);
         }
 

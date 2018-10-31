@@ -15,27 +15,28 @@ public abstract class Piece {
     }
 
     public Piece(Coordinate cord, String name, Flag flag) {
+        moves = new ArrayList<>();
+
         this.cord = cord;
         this.name = name;
         this.flag = flag;
-        calcMoves();
     }
 
     public final Coordinate getCord() {
-        return new Coordinate(cord.x, cord.y);
+        return new Coordinate(cord.row, cord.col);
     }
 
     public final Flag getFlag() {
         return flag == Flag.BLACK ? Flag.BLACK : Flag.WHITE;
     }
 
-    protected abstract void calcMoves();
+    public abstract void calcMoves();
 
     protected boolean canMoveTo(Coordinate cord) {
         boolean canMove = false;
 
         for (Coordinate c : moves) {
-            canMove = canMove || c == cord;
+            canMove = canMove || (c.compareTo(cord) == -1 ? false : true);
         }
 
         return canMove;
@@ -45,14 +46,21 @@ public abstract class Piece {
         if (canMoveTo(cord)) {
 
             this.cord = cord;
-            BoardManager.requestMove(this, cord);
 
             moves.clear();
-            calcMoves();
 
             return true;
         }
 
         return false;
+    }
+
+    public final void printMoves()
+    {
+        for (Coordinate c : moves) {
+            System.out.println("(" + c.row + " , " + c.col + ")");
+        }
+
+        moves.clear();
     }
 }
