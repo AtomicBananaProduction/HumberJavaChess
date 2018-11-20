@@ -1,14 +1,23 @@
 package mbgj.assignment1;
 
 import java.util.Scanner;
-
+import javax.swing.*;
 import mbgj.assignment1.game.*;
+import mbgj.assignment1.util.ChessUI;
 import mbgj.assignment1.util.Coordinate;
 
 public class Main {
 
     public static void main(String[] args) {
+        
+        //Debug/Test
+        ChessUI frameWindow = new ChessUI();
+        frameWindow.setVisible(true);
+        frameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameWindow.setBounds(200, 200, 600, 600);
 
+        //End of Debug
+        
         Scanner sc = new Scanner(System.in);
         Flag currentFlag = Flag.WHITE;
         int currentPlayer;
@@ -111,7 +120,6 @@ public class Main {
             }
             
         }
-        
-    
+     
     }
 }

@@ -9,15 +9,13 @@ import mbgj.assignment1.game.Pieces.*;
 import mbgj.assignment1.util.Coordinate;
 
 public class BoardManager {
-
     private static Piece[][] board;
-    private static HashMap<String, String> pieceMap;
-    
+    public static HashMap<String, String> pieceMap;
     
     public static void init() {
         //Board init for New Game
         board = new Piece[8][8];
-
+        
         pieceMap = new HashMap<>(); // Hashmap to translate computer id like Pawn to graphic value like P
 
         pieceMap.put("Pawn", "P"); // Pawn is the code id and P is the graphic representation
@@ -54,6 +52,7 @@ public class BoardManager {
         for (int i = 0; i < 8; i++) {
             board[6][i] = new Pawn(new Coordinate(6, i), Flag.WHITE);
         }
+
     }
         //Board Init for loading.
     private static void loadGameInit(){
